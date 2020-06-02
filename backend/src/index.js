@@ -1,8 +1,9 @@
 const express = require('express');
 
-app = express();
-bodyParser = require('body-parser');
-port = process.env.PORT || 3333;
+const app = express();
+const bodyParser = require('body-parser');
+const port = process.env.PORT || 3333;
+const routes = require('./routes');
 
 
 const mysql = require('mysql');
@@ -16,12 +17,13 @@ const mc = mysql.createConnection({
 
 mc.connect();
 
+app.use(routes);
 app.listen(port);
 
-console.log('API server started on: '+ port);
+// console.log('API server started on: '+ port);
 
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true}));
+// app.use(bodyParser.json());
 
-var routes = require('./routes');
-routes(app);
+// var routes = require('./routes');
+// routes(app);

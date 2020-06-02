@@ -27,17 +27,19 @@ User.getUserById = function (userId, result){
         }else{
             result(null, res);
         }
+        return res.json(res);
     });
+    
 };
 
 User.getAllUsers = function (result){
-    sql.query('select * from users', function(err, res){
+    sql.query('select * from users', function(err, response){
         if(err){
             console.log('error: ', err);
             result(null, err);
         }else{
-            console.log('users: ', res);
-            result(null, res);
+            console.log('users: ', response);
+            result(null, response);
         }
     });
 };
