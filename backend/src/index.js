@@ -1,24 +1,15 @@
 const express = require('express');
+const routes = require('./routes');
+const cors = require('cors');
 
 const app = express();
-const bodyParser = require('body-parser');
-const port = process.env.PORT || 3333;
-const routes = require('./routes');
 
-
-const mysql = require('mysql');
-
-const mc = mysql.createConnection({
-    host: 'localhost',
-    user:'root',
-    password:'',
-    database:'marketlist'
-});
-
-mc.connect();
-
+app.use(cors());
+app.use(express.json());
 app.use(routes);
-app.listen(port);
+
+app.listen(3333);
+
 
 // console.log('API server started on: '+ port);
 
